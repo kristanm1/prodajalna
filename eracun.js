@@ -198,9 +198,9 @@ var vrniRacune = function(callback) {
 // Registracija novega uporabnika
 streznik.post('/prijava', function(zahteva, odgovor) {
   var form = new formidable.IncomingForm();
+  var napaka0 = false;
   
   form.parse(zahteva, function (napaka1, polja, datoteke) {
-    var napaka2 = false;
     try {
       var stmt = pb.prepare("\
         INSERT INTO Customer \
@@ -208,14 +208,22 @@ streznik.post('/prijava', function(zahteva, odgovor) {
     	  Address, City, State, Country, PostalCode, \
     	  Phone, Fax, Email, SupportRepId) \
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-      //TODO: add fields and finalize
-      //stmt.run("", "", "", "", "", "", "", "", "", "", "", 3); 
-      //stmt.finalize();
+        
+      stmt.run(polja.FirstName, polja.LastName, polja.Company, polja.Address, polja.City, polja.State, polja.Country, polja.PostalCode, polja.Phone, polja.Fax, polja.Email, 3);
+      stmt.finalize();
     } catch (err) {
-      napaka2 = true;
+      napaka0 = true;
     }
-  
-    odgovor.end();
+    vrniStranke(function(napaka1, stranke) {
+      vrniRacune(function(napaka2, racuni) {
+        if(napaka0 || napaka1 || napaka2) {
+          odgovor.render('prijava', {sporocilo: "Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.", seznamStrank: stranke, seznamRacunov: racuni});
+        }
+        else {
+          odgovor.render('prijava', {sporocilo: "Stranka je bila uspešno registrirana.", seznamStrank: stranke, seznamRacunov: racuni});
+        }
+      }) 
+    });
   });
 })
 
@@ -223,9 +231,9 @@ streznik.post('/prijava', function(zahteva, odgovor) {
 streznik.get('/prijava', function(zahteva, odgovor) {
   vrniStranke(function(napaka1, stranke) {
       vrniRacune(function(napaka2, racuni) {
-        odgovor.render('prijava', {sporocilo: "", seznamStrank: stranke, seznamRacunov: racuni});  
+        odgovor.render('prijava', {sporocilo: "", seznamStrank: stranke, seznamRacunov: racuni});
       }) 
-    });
+  });
 })
 
 // Prikaz nakupovalne košarice za stranko
