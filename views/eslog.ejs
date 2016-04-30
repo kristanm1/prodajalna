@@ -1,52 +1,52 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <% if (vizualiziraj) { %>
 <?xml-stylesheet type="text/xsl" href="../eSLOG/vizualizacija.xslt"?>
 <% } %>
 <IzdaniRacunEnostavni xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xds="http://uri.etsi.org/01903/v1.1.1#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.gzs.si/e-poslovanje/sheme/eSLOG_1-6_EnostavniRacun.xsd">
 	<Racun Id="data">
-		<!-- verzija priročnika -->
+		<!-- verzija prirocnika -->
 		<PoljubnoBesedilo>
 			<VrstaBesedila>AAI</VrstaBesedila>
 			<Besedilo>
 				<Tekst1>PRIROCNIK_ESLOG_1_6</Tekst1>
 			</Besedilo>
 		</PoljubnoBesedilo>
-		<!-- številka računa -->
+		<!-- številka racuna -->
 		<GlavaRacuna>
 			<VrstaRacuna>380</VrstaRacuna>
 			<StevilkaRacuna>RAC-12345-6789-XX</StevilkaRacuna>
 			<FunkcijaRacuna>9</FunkcijaRacuna>
 			<!-- 1 - Racuna ni potrebno placati. -->
 			<NacinPlacila>1</NacinPlacila>
-			<!-- Stroskovno mesto računa -->
+			<!-- Stroskovno mesto racuna -->
 			<StroskovnoMesto>123456</StroskovnoMesto>
 			<!-- OTHR - drugo -->
 			<KodaNamena>OTHR</KodaNamena>
 		</GlavaRacuna>
-		<!-- naslov računa -->
+		<!-- naslov racuna -->
 		<PoljubnoBesedilo>
 			<VrstaBesedila>AAI</VrstaBesedila>
 			<Besedilo>
 				<Tekst1>NASLOV_RACUNA</Tekst1>
-				<Tekst2>Račun za opravljene storitve april 2016</Tekst2>
+				<Tekst2>Racun za opravljene storitve april 2016</Tekst2>
 			</Besedilo>
 		</PoljubnoBesedilo>
-		<!-- datum izdaje računa -->
+		<!-- datum izdaje racuna -->
 		<DatumiRacuna>
 			<VrstaDatuma>137</VrstaDatuma>
 			<DatumRacuna>2016-04-13T00:00:00.0Z</DatumRacuna>
 		</DatumiRacuna>
-		<!-- valuta računa -->
+		<!-- valuta racuna -->
 		<Valuta>
 			<VrstaValuteRacuna>2</VrstaValuteRacuna>
 			<KodaValute>EUR</KodaValute>
 		</Valuta>
-		<!-- kraj izdaje računa -->
+		<!-- kraj izdaje racuna -->
 		<Lokacije>
 			<VrstaLokacije>91</VrstaLokacije>
 			<NazivLokacije>Ljubljana</NazivLokacije>
 		</Lokacije>
-		<!-- rok plačila -->
+		<!-- rok placila -->
 		<PlacilniPogoji>
 			<PodatkiORokih>
 				<VrstaPogoja>3</VrstaPogoja>
@@ -62,7 +62,7 @@
 			<Besedilo>
 				<Tekst1>GLAVA_TEKST</Tekst1>
 				<Tekst2>Poljubno besedilo, v katerem se opiše karkoli je za izdajatelja ali na</Tekst2>
-				<Tekst3>ročnika, prejemnika pomembno.</Tekst3>
+				<Tekst3>rocnika, prejemnika pomembno.</Tekst3>
 			</Besedilo>
 		</PoljubnoBesedilo>
 		<!-- obdobje od -->
@@ -85,7 +85,7 @@
 			<VrstaBesedila>AAI</VrstaBesedila>
 			<Besedilo>
 				<Tekst1>OPIS_OBDOBJA</Tekst1>
-				<Tekst2>Prvo četrtletje</Tekst2>
+				<Tekst2>Prvo cetrtletje</Tekst2>
 			</Besedilo>
 		</PoljubnoBesedilo>
 		<!-- Subjekti na postavki -->
@@ -168,25 +168,25 @@
 				</Komunikacije>
 			</KontaktiPodjetja>
 		</PodatkiPodjetja>
-		<!-- naročnik -->
+		<!-- narocnik -->
 		<PodatkiPodjetja>
 			<NazivNaslovPodjetja>
 				<VrstaPartnerja>BY</VrstaPartnerja>
 				<NazivPartnerja>
-					<NazivPartnerja1>Univerza v Ljubljani, </NazivPartnerja1>
-					<NazivPartnerja2>Fakulteta za računalništvo in informatiko</NazivPartnerja2>
-					<NazivPartnerja3>Laboratorij za </NazivPartnerja3>
-					<NazivPartnerja4>podatkovne tehnologije</NazivPartnerja4>
+					<NazivPartnerja1><%= stranka.FirstName+" "+stranka.LastName %></NazivPartnerja1>
+					<NazivPartnerja2><%= stranka.Company %></NazivPartnerja2>
+					<NazivPartnerja3></NazivPartnerja3>
+					<NazivPartnerja4></NazivPartnerja4>
 				</NazivPartnerja>
 				<Ulica>
-					<Ulica1>Večna pot </Ulica1>
-					<Ulica2>113</Ulica2>
-					<Ulica3>nadstropje 2, kabinet R2.49</Ulica3>
+					<Ulica1><%= stranka.Address %></Ulica1>
+					<Ulica2></Ulica2>
+					<Ulica3></Ulica3>
 				</Ulica>
-				<Kraj>Ljubljana</Kraj>
-				<NazivDrzave>Slovenija</NazivDrzave>
-				<PostnaStevilka>1000</PostnaStevilka>
-				<KodaDrzave>SI</KodaDrzave>
+				<Kraj><%= stranka.City %></Kraj>
+				<NazivDrzave><%= stranka.Country %></NazivDrzave>
+				<PostnaStevilka><%= stranka.PostalCode %></PostnaStevilka>
+				<KodaDrzave></KodaDrzave>
 			</NazivNaslovPodjetja>
 			<FinancniPodatkiPodjetja>
 				<BancniRacun>
@@ -210,14 +210,14 @@
 			</ReferencniPodatkiPodjetja>
 			<KontaktiPodjetja>
 				<KontaktnaOseba>
-					<ImeOsebe>Dejan Lavbič</ImeOsebe>
+					<ImeOsebe><%= stranka.FirstName+" "+stranka.LastName+" ("+stranka.Email+")" %></ImeOsebe>
 				</KontaktnaOseba>
 				<Komunikacije>
-					<StevilkaKomunikacije>38614798000</StevilkaKomunikacije>
+					<StevilkaKomunikacije><%= stranka.Telefon %></StevilkaKomunikacije>
 					<VrstaKomunikacije>TE</VrstaKomunikacije>
 				</Komunikacije>
 				<Komunikacije>
-					<StevilkaKomunikacije>38612419350</StevilkaKomunikacije>
+					<StevilkaKomunikacije><%= stranka.Faks %></StevilkaKomunikacije>
 					<VrstaKomunikacije>FX</VrstaKomunikacije>
 				</Komunikacije>
 			</KontaktiPodjetja>
@@ -266,7 +266,7 @@
 				</Komunikacije>
 			</KontaktiPodjetja>
 		</PodatkiPodjetja>
-		<!--referenčni dokumenti -->
+		<!--referencni dokumenti -->
 		<ReferencniDokumenti VrstaDokumenta="ON">
 			<StevilkaDokumenta>NAR-2016-512</StevilkaDokumenta>
 			<DatumDokumenta>2016-02-25T00:00:00Z</DatumDokumenta>
@@ -279,7 +279,7 @@
 			<StevilkaDokumenta>DOB-2016-12</StevilkaDokumenta>
 			<DatumDokumenta>2016-03-06T00:00:00Z</DatumDokumenta>
 		</ReferencniDokumenti>
-		<!-- postavke računa -->
+		<!-- postavke racuna -->
 		<PostavkeRacuna>
 			<Postavka/>
 			<OpisiArtiklov>
@@ -402,7 +402,7 @@
 				<ReferencniDokumentiPostavke>
 					<VrstaDokumentaPostavke>ON</VrstaDokumentaPostavke>
 					<StevilkaDokumentaPostavke>NAR-123</StevilkaDokumentaPostavke>
-					<!-- Datum referenčnega dokumenta postavke -->
+					<!-- Datum referencnega dokumenta postavke -->
 					<DatumDokumenta>2016-04-13T00:00:00Z</DatumDokumenta>
 				</ReferencniDokumentiPostavke>
 				<DavkiPostavke>
@@ -469,13 +469,13 @@
 				<ZnesekDavka><%= vsoteOsnovZaDdv["0"] %></ZnesekDavka>
 			</ZneskiDavkov>
 		</PovzetekDavkovRacuna>
-		<!-- davčni tekst -->
+		<!-- davcni tekst -->
 		<PoljubnoBesedilo>
 			<VrstaBesedila>TXD</VrstaBesedila>
 			<Besedilo>
 				<Tekst1>DAVCNI_TEKST</Tekst1>
 				<Tekst2>Posebno besedilo kot ga predpisuje zakonodaja in se nanaša na posebnos</Tekst2>
-				<Tekst3>ti pri obračunu davka na računu, s sklicevanjem na člen itd.</Tekst3>
+				<Tekst3>ti pri obracunu davka na racunu, s sklicevanjem na clen itd.</Tekst3>
 			</Besedilo>
 		</PoljubnoBesedilo>
 		<!-- dodatni tekst -->
@@ -483,8 +483,8 @@
 			<VrstaBesedila>AAI</VrstaBesedila>
 			<Besedilo>
 				<Tekst1>DODATNI_TEKST</Tekst1>
-				<Tekst2>Prosimo, da račun poravnate na transakcijski račun: SI56 9900 0000 372</Tekst2>
-				<Tekst3>2 222 odprt pri Naši banki d.d.. Za nepravočasna plačila zaračunavamo </Tekst3>
+				<Tekst2>Prosimo, da racun poravnate na transakcijski racun: SI56 9900 0000 372</Tekst2>
+				<Tekst3>2 222 odprt pri Naši banki d.d.. Za nepravocasna placila zaracunavamo </Tekst3>
 				<Tekst4> z zakonom predpisane zamudne obresti.</Tekst4>
 			</Besedilo>
 		</PoljubnoBesedilo>
@@ -564,7 +564,7 @@
 				<SklicPlacila>PQ</SklicPlacila>
 			</SklicZaPlacilo>
 		</PovzetekZneskovRacuna>
-		<!-- predplačilo -->
+		<!-- predplacilo -->
 		<PovzetekZneskovRacuna>
 			<ZneskiRacuna>
 				<VrstaZneska>0</VrstaZneska>
@@ -584,7 +584,7 @@
 				<SklicPlacila>PQ</SklicPlacila>
 			</SklicZaPlacilo>
 		</PovzetekZneskovRacuna>
-		<!-- znesek za plačilo -->
+		<!-- znesek za placilo -->
 		<PovzetekZneskovRacuna>
 			<ZneskiRacuna>
 				<VrstaZneska>9</VrstaZneska>
@@ -600,12 +600,12 @@
 			<VrstaBesedila>AAI</VrstaBesedila>
 			<Besedilo>
 				<Tekst1>NOGA_TEKST</Tekst1>
-				<Tekst2>Pravna oseba SETCCE je vpisana pri Okrožnem sodišču v Ljubljani, št. r</Tekst2>
+				<Tekst2>Pravna oseba SETCCE je vpisana pri Okrožnem sodišcu v Ljubljani, št. r</Tekst2>
 				<Tekst3>eg. vpisa 061/13422800, dejavnost:73.102, ustanovitveni vložek 10.432,</Tekst3>
 				<Tekst4>22 EUR.</Tekst4>
 			</Besedilo>
 		</PoljubnoBesedilo>
-		<!-- davčno potrjevanje -->
+		<!-- davcno potrjevanje -->
 		<PoljubnoBesedilo>
 			<VrstaBesedila>TXD</VrstaBesedila>
 			<Besedilo>
